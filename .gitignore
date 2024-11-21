@@ -4,6 +4,6 @@
 /ansible
 /ansible;C
 hosts
-ansible.bat
+# ansible.bat
 # ansible.cfg
 *.yaml
