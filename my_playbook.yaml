@@ -1,0 +1,41 @@
+---
+- name: Installing and configuring Apache on my Ubuntu
+  hosts: webservers
+  become: true
+
+  vars:
+    apache_port: 8040
+    apache_content: "<h1>Welcome to my Apache server on port 8040!</h1>"
+
+  tasks:
+    - name: Update the package cache
+      apt:
+        update_cache: yes
+
+    - name: Installing Apache2 
+      apt:
+        name: apache2
+        state: present
+
+    - name: Changing the listening port
+      lineinfile:
+        path: /etc/apache2/ports.conf
+        regexp: "^Listen .*"
+        line: "Listen {{ apache_port }}"
+        state: present
+
+    - name: Configuring UFW to allow port
+      ufw:
+        rule: allow
+        port: "{{ apache_port }}"
+        proto: tcp
+
+    - name: Creating a custom index.html file
+      copy:
+        dest: /var/www/html/index.html
+        content: "{{ apache_content }}"
+        mode: '0644'
+
+    - name: Restarting Apache using systemctl
+      command:
+        cmd: systemctl restart apache2

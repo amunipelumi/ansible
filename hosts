@@ -1,0 +1,13 @@
+# Web servers group
+[webservers]
+172.xxx.xxx.xxx ansible_user=xxx
+# 192.168.1.11 ansible_user=ubuntu
+
+# Database servers group
+# [dbservers]
+# 192.168.1.20 ansible_user=admin
+# 192.168.1.21 ansible_user=admin ansible_private_key_file=/home/admin/.ssh/db_key
+
+# Variables applied to all hosts
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3

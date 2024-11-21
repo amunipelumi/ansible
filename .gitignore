@@ -3,7 +3,7 @@
 /root;C
 /ansible
 /ansible;C
-hosts
+# hosts
 # ansible.bat
 # ansible.cfg
-*.yaml
+test.yaml
